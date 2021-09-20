@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=375, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keywords" content="" >
+
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+    <!-- Vue.js -->
+    <script src="//unpkg.com/vue"></script>
+
+</head>
+<body>
+
+    <!-- ヘッダー -->
+    <header>
+        <!-- ヘッダー部分 -->
+        <div class="header" id="header">
+            <div class="header__warpper hp_wrapper">
+    
+                <!-- ロゴ -->
+                <a class="header__logo" @mouseover="hide_meganav">
+                    <img loading='lazy' src='assets/img/logo.svg' alt='オリジナル制作ならデザインクリエイト｜Design Create'>
+                </a>
+    
+                <!-- ナビ -->
+                <nav>
+                    <ul class="header__nav">
+                        <li>
+                            <head_link ja="サービス案内" en="Service" url="#" @show_meganav='show_meganav'/>
+                        </li>
+                        <li>
+                            <head_link ja="制作の流れ" en="Flow" url="#" @show_meganav='show_meganav'/>
+                        </li>
+                        <li>
+                            <head_link ja="選ばれる理由" en="Reasons" url="#" @show_meganav='show_meganav'/>
+                        </li>
+                        <li>
+                            <head_link ja="実績" en="Works" url="#" @show_meganav='show_meganav'/>
+                        </li>
+                        <li>
+                            <head_link ja="料金案内" en="Price" url="#" @show_meganav='show_meganav'/>
+                        </li>
+                        <li>
+                            <head_link ja="よくある質問" en="Q&A" url="#" @show_meganav='show_meganav'/>
+                        </li>
+                        <li>
+                            <head_link ja="会社概要" en="About us" url="#" @show_meganav='show_meganav'/>
+                        </li>
+                        <li>
+                            <a href="" class="header__contact" @mouseover="hide_meganav">
+                                お問合せ
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+    
+                <!-- メガメニュー -->
+                <transition name="meganav">
+                    <nav class="header__mega meganav" v-if='is_mega_show' @mouseleave="hide_meganav">
+                        <div class="meganav__left">
+                            <a class="meganav__content">
+                                <figure class="meganav__img">
+                                    <img loading='lazy' src='assets/img/meganav/img (1).jpg' alt='ホームページ制作'>
+                                </figure>
+                                <p class="meganav__text">ホームページ制作</p>
+                            </a>
+                            <a class="meganav__content">
+                                <figure class="meganav__img">
+                                    <img loading='lazy' src='assets/img/meganav/img (2).jpg' alt='デザイン制作'>
+                                </figure>
+                                <p class="meganav__text">デザイン制作</p>
+                            </a>
+                            </a>
+                            <a class="meganav__content">
+                                <figure class="meganav__img">
+                                    <img loading='lazy' src='assets/img/meganav/img (3).jpg' alt='名刺・チラシ・POP制作'>
+                                </figure>
+                                <p class="meganav__text">名刺・チラシ・POP制作</p>
+                            </a>
+                            </a>
+                            <a class="meganav__content">
+                                <figure class="meganav__img">
+                                    <img loading='lazy' src='assets/img/meganav/img (4).jpg' alt='大型看板・ポスター制作'>
+                                </figure>
+                                <p class="meganav__text">大型看板・ポスター制作</p>
+                            </a>
+                            </a>
+                            <a class="meganav__content">
+                                <figure class="meganav__img">
+                                    <img loading='lazy' src='assets/img/meganav/img (5).jpg' alt='冊子・会報誌制作'>
+                                </figure>
+                                <p class="meganav__text">冊子・会報誌制作</p>
+                            </a>
+                            </a>
+                            <a class="meganav__content">
+                                <figure class="meganav__img">
+                                    <img loading='lazy' src='assets/img/meganav/img (6).jpg' alt='SEO対策コンサルティング'>
+                                </figure>
+                                <p class="meganav__text">SEO対策コンサルティング</p>
+                            </a>
+                        </div>
+                        <div class="meganav__right">
+                            <a href="" class="meganav__link">制作の流れ</a>
+                            <a href="" class="meganav__link">選ばれる理由</a>
+                        </div>
+                    </nav>
+                </transition>
+    
+                <!-- モバイルナビ -->
+                <button class="header__hum" @click="click_hum">
+                    <div class="header__hum_open" :class="{ active: is_mobile_show }"></div>
+                    <div class="header__hum_open" :class="{ active: is_mobile_show }"></div>
+                    <div class="header__hum_open" :class="{ active: is_mobile_show }"></div>
+                    <div class="header__hum_close2" :class="{ active: is_mobile_show }"></div>
+                    <div class="header__hum_close1" :class="{ active: is_mobile_show }"></div>
+                </button>
+                <transition name="mobilenav">
+                    <nav class="header__mobilenav mobilenav" v-if='is_mobile_show'>
+                        <ul>
+                            <li>
+                                <a href="" class="mobilenav__link">サービス案内</a>
+                            </li>
+                            <li>
+                                <a href="" class="mobilenav__link">制作の流れ</a>
+                            </li>
+                            <li>
+                                <a href="" class="mobilenav__link">選ばれる理由</a>
+                            </li>
+                            <li>
+                                <a href="" class="mobilenav__link">実績</a>
+                            </li>
+                            <li>
+                                <a href="" class="mobilenav__link">料金案内</a>
+                            </li>
+                            <li>
+                                <a href="" class="mobilenav__link">よくある質問</a>
+                            </li>
+                            <li>
+                                <a href="" class="mobilenav__link">会社概要</a>
+                            </li>
+                            <li>
+                                <a href="" class="mobilenav__link">お問い合わせ</a>
+                            </li>
+                        </ul>
+        
+                    </nav>
+                </transition>
+            </div>
+        </div>
+
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="hp_page">
+
+        <!-- サービス案内 -->
+        <section class="p_reason hp_wrapper">
+            <!-- 見出し -->
+            <header>
+                <p class="hp_blue">Reasons</p>
+                <h2 class="hp_title hp_mb60">選ばれる理由</h2>
+            </header>
+
+            <ul class="p_reason__contents">
+                <li class="p_reason__content">
+                    <div class="p_reason__top">
+                        <p class="p_reason__number"><span class="p_reason__number_small">NO.</span>1</p>
+                        <h3 class="p_reason__title">更新費用は一切いただきません｡</h3>
+                    </div>
+                    <p class="p_reason__text">
+                        弊社はレンタルサーバー式のホームページ制作ではないので、年間〇〇円、といった費用は一切いただきません。サーバーに不具合があった場合は無料で対応致します。
+                        <br>（但し、お客さまご都合の場合は実費のみいただきます。）
+                    </p>
+                </li>
+                <li class="p_reason__content">
+                    <div class="p_reason__top">
+                        <p class="p_reason__number"><span class="p_reason__number_small">NO.</span>2</p>
+                        <h3 class="p_reason__title">デザインの変更は何度でも対応します</h3>
+                    </div>
+                    <p class="p_reason__text">
+                        コーディングに入る前（htmlなどの打ち込み）のデザイン修正は何度でもお受けいたします。
+                        <br>「あれ？ちょっと違うな。」といった不安なども解決するまで対応しますのでご安心ください。
+                    </p>
+                </li>
+                <li class="p_reason__content">
+                    <div class="p_reason__top">
+                        <p class="p_reason__number"><span class="p_reason__number_small">NO.</span>3</p>
+                        <h3 class="p_reason__title">更新の際は必要な分だけ適正価格をお見積り致します</h3>
+                    </div>
+                    <p class="p_reason__text">
+                        ご納品後、例えばお客さまのサイトで料金やテキストの編集が必要な場合は適正料金をお見積させていただきます。
+                        <br>レイアウトの変更など大きな修正がなければ、数千円〜2万円程度で修正が可能です。
+                    </p>
+                </li>
+                <li class="p_reason__content">
+                    <div class="p_reason__top">
+                        <p class="p_reason__number"><span class="p_reason__number_small">NO.</span>4</p>
+                        <h3 class="p_reason__title">ご納品後のサポートも万全です</h3>
+                    </div>
+                    <p class="p_reason__text">
+                        メールの設定や、スマホへのメールの設定、MEOなどのサポートも無償にて対応致します。
+                        <br>実際の作業はお客さまにしていただくことになりますが、ZOOMなどで丁寧にご理解いただけるまでご説明させていただきます。（ZOOM予約必須：所要時間60分）
+                    </p>
+                </li>
+            </ul>
+        </section>
+
+        <!-- お問合せ -->
+        <aside class="tocontact hp_wrapper">
+            <p class="tocontact__title">お気軽にお問い合わせください</p>
+            <div class="tocontact__content">
+                <p class="tocontact__text">
+                    デザインクリエイトトのスタイルは「顔の見えるサイト制作」です。
+                    <br>お客様のもとへ直接伺い、お客様それぞれにあったプランニングを行います。
+                    <br>サイトやツールのデザインイメージがはっきりと確定していない方でも大丈夫！
+                    <br>お客様に合わせたご提案を差し上げます。
+                    <br>デザインはお客様がご納得いくまで何度でも修正可能です。
+                    <br>お問い合わせフォーム・FAX・お電話にて、お気軽にお問い合わせください。
+                </p>
+                <a href="" class="tocontact__btn">お問い合わせ</a>
+            </div>
+        </aside>
+
+        <!-- お客様の声 -->
+        <section class="voice hp_wrapper">
+            <p class="hp_blue">Customer's voice</p>
+            <h2 class="hp_title">お客様の声</h2>
+            <p class="hp_text">
+                デザインクリエイトに寄せられたお客様の声を一部ご紹介しております。
+                <br>活動エリアは関東エリアになりますが全国のクライアントからお喜びの声をいただきました。
+            </p>
+
+            <!-- メインコンテンツ -->
+            <ul class="voice__contents">
+                <li class="voice__content">
+                    <a href="">
+                        <figure class="voice__img">
+                            <img loading='lazy' src='assets/img/voice/img (1).jpg' alt='イメージ画像'>
+                        </figure>
+                        <div class="voice__title">
+                            <p class="voice__text">LP制作｜福祉業界</p>
+                            <p class="voice__text">訪問リハビリセンター　佐藤様</p>
+                        </div>
+                    </a>
+                </li>
+                <li class="voice__content">
+                    <a href="">
+                        <figure class="voice__img">
+                            <img loading='lazy' src='assets/img/voice/img (2).jpg' alt='イメージ画像'>
+                        </figure>
+                        <div class="voice__title">
+                            <p class="voice__text">ホームページ制作｜運送業</p>
+                            <p class="voice__text">株式会社光勝　坂本龍介様</p>
+                        </div>
+                    </a>
+                </li>
+                <li class="voice__content">
+                    <a href="">
+                        <figure class="voice__img">
+                            <img loading='lazy' src='assets/img/voice/img (3).jpg' alt='イメージ画像'>
+                        </figure>
+                        <div class="voice__title">
+                            <p class="voice__text">ホームページ制作｜不動産業</p>
+                            <p class="voice__text">有限会社リプロ　清水稔様</p>
+                        </div>
+                    </a>
+                </li>
+                <li class="voice__content">
+                    <a href="">
+                        <figure class="voice__img">
+                            <img loading='lazy' src='assets/img/voice/img (4).jpg' alt='イメージ画像'>
+                        </figure>
+                        <div class="voice__title">
+                            <p class="voice__text">オリジナルノート制作｜音楽業界</p>
+                            <p class="voice__text">大山音楽教室　鈴木典子様</p>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+    </main>
+
+    <!-- フッター -->
+    <footer>
+        <!-- お問い合わせ -->
+        <div class="ft_contact">
+            <div class="ft_contact__wrapper hp_wrapper">
+                <p class="ft_contact__text">ご相談・ご質問等ございましたら、お気軽にお問い合わせください。</p>
+                <a href="" class="ft_contact__btn">お問い合わせ</a>
+            </div>
+        </div>
+        
+        <!-- メイン -->
+        <div class="ft_main">
+            <nav class="ft_main__wrapper hp_wrapper">
+                <div class="ft_main__content">
+                    <a href="" class="ft_main__link">
+                        <p class="ft_main__link_white">サービス案内</p>
+                        <p class="ft_main__link_blue">Service</p>
+                    </a>
+                    <a href="" class="ft_main__gray">デザイン制作</a>
+                    <a href="" class="ft_main__gray">名刺･チラシ･POP制作</a>
+                    <a href="" class="ft_main__gray">大型看板･ポスター制作</a>
+                    <a href="" class="ft_main__gray">会報誌･冊子制作</a>
+                    <a href="" class="ft_main__gray">SEOコンサルティング</a>
+                </div>
+
+                <div class="ft_main__content">
+                    <a href="" class="ft_main__link">
+                        <p class="ft_main__link_white">制作の流れ</p>
+                        <p class="ft_main__link_blue">Flow</p>
+                    </a>
+                    <a href="" class="ft_main__link">
+                        <p class="ft_main__link_white">選ばれる理由</p>
+                        <p class="ft_main__link_blue">Selected</p>
+                    </a>
+                    <a href="" class="ft_main__link">
+                        <p class="ft_main__link_white">実績</p>
+                        <p class="ft_main__link_blue">Works</p>
+                    </a>
+                </div>
+
+                <div class="ft_main__content">
+                    <a href="" class="ft_main__link">
+                        <p class="ft_main__link_white">料金案内</p>
+                        <p class="ft_main__link_blue">Price</p>
+                    </a>
+                    <a href="" class="ft_main__link">
+                        <p class="ft_main__link_white">会社案内</p>
+                        <p class="ft_main__link_blue">Company</p>
+                    </a>
+                </div>
+
+                <div class="ft_main__content">
+                    <a href="" class="ft_main__link">
+                        <p class="ft_main__link_white">新着情報</p>
+                        <p class="ft_main__link_blue">News</p>
+                    </a>
+                    <a href="" class="ft_main__link">
+                        <p class="ft_main__link_white">お問い合わせ</p>
+                        <p class="ft_main__link_blue">Contact</p>
+                    </a>
+                    <a href="" class="ft_main__gray ft_main__gray_small">プライバシーポリシー</a>
+                    <a href="" class="ft_main__gray ft_main__gray_small">サイトマップ</a>
+                </div>
+
+                <a href="#" class="ft_main__gotop">PAGE TOP</a>
+            </nav>
+        </div>
+
+        <!-- コピーライト -->
+        <div class="ft_cp">
+            <div class="hp_wrapper ft_cp__wrapper">
+                <p class="ft_cp__text">埼玉県川口市ホームページ制作｜デザインクリエイト</p>
+                <p class="ft_cp__text">Copyright ©️ Design Create All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+<script src="assets/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=375, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keywords" content="" >
+
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+    <!-- Vue.js -->
+    <script src="//unpkg.com/vue"></script>
+
+</head>
+<body>
+
+    <!-- ヘッダー -->
+    <header>
+        <!-- ヘッダー部分 -->
+        <div class="header" id="header">
+            <div class="header__warpper hp_wrapper">
+    
+                <!-- ロゴ -->
+                <a class="header__logo" @mouseover="hide_meganav">
+                    <img loading='lazy' src='assets/img/logo.svg' alt='オリジナル制作ならデザインクリエイト｜Design Create'>
+                </a>
+    
+                <!-- ナビ -->
+                <nav>
+                    <ul class="header__nav">
+                        <li>
+                            <head_link ja="サービス案内" en="Service" url="#" @show_meganav='show_meganav'/>
+                        </li>
+                        <li>
+                            <head_link ja="制作の流れ" en="Flow" url="#" @show_meganav='show_meganav'/>
+                        </li>
+                        <li>
+                            <head_link ja="選ばれる理由" en="Reasons" url="#" @show_meganav='show_meganav'/>
+                        </li>
+                        <li>
+                            <head_link ja="実績" en="Works" url="#" @show_meganav='show_meganav'/>
+                        </li>
+                        <li>
+                            <head_link ja="料金案内" en="Price" url="#" @show_meganav='show_meganav'/>
+                        </li>
+                        <li>
+                            <head_link ja="よくある質問" en="Q&A" url="#" @show_meganav='show_meganav'/>
+                        </li>
+                        <li>
+                            <head_link ja="会社概要" en="About us" url="#" @show_meganav='show_meganav'/>
+                        </li>
+                        <li>
+                            <a href="" class="header__contact" @mouseover="hide_meganav">
+                                お問合せ
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+    
+                <!-- メガメニュー -->
+                <transition name="meganav">
+                    <nav class="header__mega meganav" v-if='is_mega_show' @mouseleave="hide_meganav">
+                        <div class="meganav__left">
+                            <a class="meganav__content">
+                                <figure class="meganav__img">
+                                    <img loading='lazy' src='assets/img/meganav/img (1).jpg' alt='ホームページ制作'>
+                                </figure>
+                                <p class="meganav__text">ホームページ制作</p>
+                            </a>
+                            <a class="meganav__content">
+                                <figure class="meganav__img">
+                                    <img loading='lazy' src='assets/img/meganav/img (2).jpg' alt='デザイン制作'>
+                                </figure>
+                                <p class="meganav__text">デザイン制作</p>
+                            </a>
+                            </a>
+                            <a class="meganav__content">
+                                <figure class="meganav__img">
+                                    <img loading='lazy' src='assets/img/meganav/img (3).jpg' alt='名刺・チラシ・POP制作'>
+                                </figure>
+                                <p class="meganav__text">名刺・チラシ・POP制作</p>
+                            </a>
+                            </a>
+                            <a class="meganav__content">
+                                <figure class="meganav__img">
+                                    <img loading='lazy' src='assets/img/meganav/img (4).jpg' alt='大型看板・ポスター制作'>
+                                </figure>
+                                <p class="meganav__text">大型看板・ポスター制作</p>
+                            </a>
+                            </a>
+                            <a class="meganav__content">
+                                <figure class="meganav__img">
+                                    <img loading='lazy' src='assets/img/meganav/img (5).jpg' alt='冊子・会報誌制作'>
+                                </figure>
+                                <p class="meganav__text">冊子・会報誌制作</p>
+                            </a>
+                            </a>
+                            <a class="meganav__content">
+                                <figure class="meganav__img">
+                                    <img loading='lazy' src='assets/img/meganav/img (6).jpg' alt='SEO対策コンサルティング'>
+                                </figure>
+                                <p class="meganav__text">SEO対策コンサルティング</p>
+                            </a>
+                        </div>
+                        <div class="meganav__right">
+                            <a href="" class="meganav__link">制作の流れ</a>
+                            <a href="" class="meganav__link">選ばれる理由</a>
+                        </div>
+                    </nav>
+                </transition>
+    
+                <!-- モバイルナビ -->
+                <button class="header__hum" @click="click_hum">
+                    <div class="header__hum_open" :class="{ active: is_mobile_show }"></div>
+                    <div class="header__hum_open" :class="{ active: is_mobile_show }"></div>
+                    <div class="header__hum_open" :class="{ active: is_mobile_show }"></div>
+                    <div class="header__hum_close2" :class="{ active: is_mobile_show }"></div>
+                    <div class="header__hum_close1" :class="{ active: is_mobile_show }"></div>
+                </button>
+                <transition name="mobilenav">
+                    <nav class="header__mobilenav mobilenav" v-if='is_mobile_show'>
+                        <ul>
+                            <li>
+                                <a href="" class="mobilenav__link">サービス案内</a>
+                            </li>
+                            <li>
+                                <a href="" class="mobilenav__link">制作の流れ</a>
+                            </li>
+                            <li>
+                                <a href="" class="mobilenav__link">選ばれる理由</a>
+                            </li>
+                            <li>
+                                <a href="" class="mobilenav__link">実績</a>
+                            </li>
+                            <li>
+                                <a href="" class="mobilenav__link">料金案内</a>
+                            </li>
+                            <li>
+                                <a href="" class="mobilenav__link">よくある質問</a>
+                            </li>
+                            <li>
+                                <a href="" class="mobilenav__link">会社概要</a>
+                            </li>
+                            <li>
+                                <a href="" class="mobilenav__link">お問い合わせ</a>
+                            </li>
+                        </ul>
+        
+                    </nav>
+                </transition>
+            </div>
+        </div>
+
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="hp_page">
+
+        <!-- サービス案内 -->
+        <header class="p_price hp_wrapper">
+            <!-- 見出し -->
+            <p class="hp_blue">Price</p>
+            <h2 class="hp_title">料金表</h2>
+            <p class="hp__cat hp_mb60">カテゴリーから選ぶ</p>
+
+            <!-- ボタン -->
+            <nav>
+                <ul class="hp_nav__nav">
+                    <li class="hp_nav__link">
+                        <a href="#0" class="hp_nav__linka">
+                            <img class="hp_nav__linkicon" loading='lazy' src='assets/img/icon/icon1.svg' alt='アイコン'>
+                            <p class="hp_nav__linktext">ホームページ制作</p>
+                        </a>
+                    </li>
+                    <li class="hp_nav__link">
+                        <a href="#1" class="hp_nav__linka">
+                            <img class="hp_nav__linkicon" loading='lazy' src='assets/img/icon/icon2.svg' alt='アイコン'>
+                            <p class="hp_nav__linktext">デザイン制作</p>
+                        </a>
+                    </li>
+                    <li class="hp_nav__link">
+                        <a href="#2" class="hp_nav__linka">
+                            <img class="hp_nav__linkicon" loading='lazy' src='assets/img/icon/icon3.svg' alt='アイコン'>
+                            <p class="hp_nav__linktext">名刺･チラシ･<br>POP制作</p>
+                        </a>
+                    </li>
+                    <li class="hp_nav__link">
+                        <a href="#3" class="hp_nav__linka">
+                            <img class="hp_nav__linkicon" loading='lazy' src='assets/img/icon/icon4.svg' alt='アイコン'>
+                            <p class="hp_nav__linktext">看板･ポスター制作</p>
+                        </a>
+                    </li>
+                    <li class="hp_nav__link">
+                        <a href="#4" class="hp_nav__linka">
+                            <img class="hp_nav__linkicon" loading='lazy' src='assets/img/icon/icon5.svg' alt='アイコン'>
+                            <p class="hp_nav__linktext">冊子･会報誌制作</p>
+                        </a>
+                    </li>
+                    <li class="hp_nav__link">
+                        <a href="#5" class="hp_nav__linka">
+                            <img class="hp_nav__linkicon" loading='lazy' src='assets/img/icon/icon6.svg' alt='アイコン'>
+                            <p class="hp_nav__linktext">その他の<br>ご質問事項</p>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- メインコンテンツ -->
+        <section class="p_price hp_wrapper">
+            <!-- ホームページ制作 -->
+            <article class="p_price__content" id="0">
+                <div class="p_price__top hp_head">
+                    <div class="hp_head__left">
+                        <img src="assets/img/icon/icon1.svg" alt="アイコン" class="hp_head__img">
+                        <h3 class="hp_head__title">ホームページ制作</h3>
+                    </div>
+                    <a href="" class="hp_head__right">実績をみる</a>
+                </div>
+
+                <p class="hp_yellow__ann ap">※横にスクロールできます</p>
+                <div class="hp_yellow">
+                    <table class="hp_yellow__table">
+                        <tr>
+                            <td>ホームページ制作</td>
+                            <td>¥250,000〜</td>
+                            <td>
+                                一般的なオフィシャルサイトや、コーポレートサイトをご要望の方には最適です。
+                                <br>更新の必要がないので手軽に制作可能です。
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>ホームページ(WordPress)制作</td>
+                            <td>¥280,000〜</td>
+                            <td>
+                                随時情報を発信していきたいお客様にとっては、こちらがおすすめです。ご自分の都合の良い時に更新できるシステムをご提供致します。
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>LP(ランディングページ)制作</td>
+                            <td>¥280,000〜</td>
+                            <td>
+                                PPC広告をメインに広告を出稿されるお客さまにはこちらがおすすめです。ペライチにはなりますが、離脱しないような構成でデザインさせていただきます。
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>ショッピングサイト制作</td>
+                            <td>¥280,000〜</td>
+                            <td>
+                                様々なECサイトがございますので、お客さまのニーズにあったECサイトを各種ご提案させていただきます。
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="hp_red">
+                    <p class="hp_red__title">オススメパック</p>
+                    <div class="hp_red__wrapper">
+                        <p class="hp_red__text hp_red__left">
+                            <span class="hp_red__text_red">初めてご発注いただけますお客さまにはスペシャルプレゼントとして、ご発注内容の他に</span>
+                            弊社ポイントカードをプレゼント！させていただきます！<br>
+                            <span class="hp_red__text_red"></span>
+                        </p>
+                        <div class="hp_red__right">
+                            <p class="hp_red__text hp_red__text_red hp_red__text_large">上記プランから正式ご発注のお客さまのみ</p>
+                            <p class="hp_red__text">※お申し込み時に「オススメパック」利用とお伝えください</p>
+                        </div>
+                        <p class="hp_red__btm">リピーター様には別途お得なキャンペーンをメルマガにて配信しております！</p>
+                    </div>
+                </div>
+            </article>
+            
+            <!-- ホームページ制作 -->
+            <article class="p_price__content" id="1">
+                <div class="p_price__top hp_head">
+                    <div class="hp_head__left">
+                        <img src="assets/img/icon/icon2.svg" alt="アイコン" class="hp_head__img">
+                        <h3 class="hp_head__title">デザイン制作</h3>
+                    </div>
+                </div>
+
+                <p class="hp_yellow__ann ap">※横にスクロールできます</p>
+                <div class="hp_yellow">
+                    <table class="hp_yellow__table">
+                        <tr>
+                            <td>商品パッケージ<span class="small">　注記(1)</span></td>
+                            <td>¥20,000〜</td>
+                            <td>
+                                物販などで必要なパッケージデザインを賜ります。
+                                <br>修正等は何度でも行いますのでお客さまの理想に近いデザインをご提供致します。
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>商品詳細画像(7枚)<span class="small">　注記(1)</span></td>
+                            <td>¥80,000〜</td>
+                            <td>
+                                ECサイトなどで利用する商品詳細画像の制作を行います。
+                                <br>有料素材はお客さまのご負担になりますが、無料素材で宜しければ弊社にてご用意させていただきます。
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>オリジナルデザイン制作<span class="small">　注記(1)</span></td>
+                            <td>¥100,000〜</td>
+                            <td>
+                                各種オリジナルにてデザインしたい項目をご相談頂ければほとんど対応可能です。まずはご相談ください。
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <p class="hp_yellow__ann">注記(1)：サイズにもよりますので、まずはご相談くださいませ。</p>
+
+                <div class="hp_red">
+                    <p class="hp_red__title">オススメパック</p>
+                    <div class="hp_red__wrapper">
+                        <p class="hp_red__text hp_red__left">
+                            <span class="hp_red__text_red">商品パッケージ＆商品詳細画像をセットでお申し込み頂きました</span>
+                            <br>お客さまには3％割引をさせていただきます！
+                            <span class="hp_red__text_red"><br>（こちらは何度でもご利用可能です。）</span>
+                        </p>
+                        <div class="hp_red__right">
+                            <p class="hp_red__text hp_red__text_red hp_red__text_large">上記プランから正式ご発注のお客さまのみ</p>
+                            <p class="hp_red__text">※お申し込み時に「オススメパック」利用とお伝えください</p>
+                        </div>
+                        <p class="hp_red__btm">リピーター様には別途お得なキャンペーンをメルマガにて配信しております！</p>
+                    </div>
+                </div>
+            </article>
+            
+            <!-- 名刺・チラシ・POP制作 -->
+            <article class="p_price__content" id="2">
+                <div class="p_price__top hp_head">
+                    <div class="hp_head__left">
+                        <img src="assets/img/icon/icon3.svg" alt="アイコン" class="hp_head__img">
+                        <h3 class="hp_head__title">名刺・チラシ・POP制作</h3>
+                    </div>
+                </div>
+
+                <p class="hp_yellow__ann ap">※横にスクロールできます</p>
+                <p class="hp_yellow__ann">※印刷費用は別途費用がかかります。納期が長く、部数が多いほどお安くなります。</p>
+                <div class="hp_yellow">
+                    <table class="hp_yellow__table">
+                        <tr>
+                            <td>名刺デザイン</td>
+                            <td>¥5,000〜</td>
+                            <td>
+                                お客さまのご要望を充分にヒアリングし、イメージに沿った名刺デザインを制作いたします。名刺は会社の顔でもございますので用紙等を含め丁寧に対応いたします。
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>チラシデザイン</td>
+                            <td>¥50,000〜</td>
+                            <td>
+                                新聞落ち込みチラシからポスティング用のチラシまで、一貫して対応いたします。その際、どうすればコストダウンできるのかなどのアドバイスもさせていただきます。
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>POPデザイン(サイズによる)</td>
+                            <td>¥50,000〜</td>
+                            <td>
+                                お客さまと念蜜なお打ち合わせをし、どのような費用対効果をお求めかとしっかりヒヤリングしプランニングさせて頂きます。
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="hp_red">
+                    <p class="hp_red__title">オススメパック</p>
+                    <div class="hp_red__wrapper">
+                        <p class="hp_red__text hp_red__left">
+                            <span class="hp_red__text_red">弊社が持ち合わすデザインからの簡易修正の場合、通常の</span>
+                            半額程度でご対応させていただきます。
+                            <span class="hp_red__text_red"><br>※但し、修正が多くなる場合は通常料金となります。</span>
+                        </p>
+                        <div class="hp_red__right">
+                            <p class="hp_red__text hp_red__text_red hp_red__text_large">上記プランから正式ご発注のお客さまのみ</p>
+                            <p class="hp_red__text">※お申し込み時に「オススメパック」利用とお伝えください</p>
+                        </div>
+                        <p class="hp_red__btm">リピーター様には別途お得なキャンペーンをメルマガにて配信しております！</p>
+                    </div>
+                </div>
+            </article>
+            
+            <!-- 看板・ポスター制作 -->
+            <article class="p_price__content" id="3">
+                <div class="p_price__top hp_head">
+                    <div class="hp_head__left">
+                        <img src="assets/img/icon/icon4.svg" alt="アイコン" class="hp_head__img">
+                        <h3 class="hp_head__title">看板・ポスター制作</h3>
+                    </div>
+                </div>
+
+                <p class="hp_yellow__ann ap">※横にスクロールできます</p>
+                <p class="hp_yellow__ann">※印刷費用は別途費用がかかります。納期が長く、部数が多いほどお安くなります。</p>
+                <div class="hp_yellow">
+                    <table class="hp_yellow__table">
+                        <tr>
+                            <td>アルミ看板(サイズによる)</td>
+                            <td>¥40,000〜</td>
+                            <td>
+                                アルミ複合板、スチレンボードの中からお選びいただけます。アルミ複合板：厚さ3mm程度のプラスチックをアルミニウムでサンドイッチした板材です。 (印刷・設置費用は別途加算されます)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>パネル看板(サイズによる)</td>
+                            <td>¥40,000〜</td>
+                            <td>
+                                スタンダードタイプの看板用パネル。耐久性や耐水性に優れています。厚み３mmですので大きさにはよりますが女性の方でも設置可能です。 (印刷・設置費用は別途加算されます)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>ポスター(サイズによる)</td>
+                            <td>¥50,000〜</td>
+                            <td>
+                                光沢感がなく、落ち着いた仕上がりになります。反射が気になる室内のPOPなどの使用が適してます。屋内使用であれば1～3年ご利用いただけます。 (印刷・設置費用は別途加算されます)
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="hp_red">
+                    <p class="hp_red__title">オススメパック</p>
+                    <div class="hp_red__wrapper">
+                        <p class="hp_red__text hp_red__left">
+                            <span class="hp_red__text_red">表記価格はデザイン費用のみとなっておりますが、2回目からの</span>
+                            リピートのお客さまに限りましては、制作代金の実費のみにて
+                            <span class="hp_red__text_red">ご対応させて頂きます。</span>
+                        </p>
+                        <div class="hp_red__right">
+                            <p class="hp_red__text hp_red__text_red hp_red__text_large">上記プランから正式ご発注のお客さまのみ</p>
+                            <p class="hp_red__text">※お申し込み時に「オススメパック」利用とお伝えください</p>
+                        </div>
+                        <p class="hp_red__btm">リピーター様には別途お得なキャンペーンをメルマガにて配信しております！</p>
+                    </div>
+                </div>
+            </article>
+            
+            <!-- 冊子・会報誌制作 -->
+            <article class="p_price__content" id="4">
+                <div class="p_price__top hp_head">
+                    <div class="hp_head__left">
+                        <img src="assets/img/icon/icon5.svg" alt="アイコン" class="hp_head__img">
+                        <h3 class="hp_head__title">冊子・会報誌制作</h3>
+                    </div>
+                </div>
+
+                <p class="hp_yellow__ann ap">※横にスクロールできます</p>
+                <p class="hp_yellow__ann">※印刷費用は別途費用がかかります。納期が長く、部数が多いほどお安くなります。</p>
+                <div class="hp_yellow">
+                    <table class="hp_yellow__table">
+                        <tr>
+                            <td>冊子/１ページにつき</td>
+                            <td>¥30,000〜</td>
+                            <td>
+                                少部数・短納期のモノクロ冊子印刷可能です。
+                                <br>あらゆる冊子・小冊子に対応し、かつカラー中綴じ冊子を業界最安値にてご提供しております。 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>会報誌/１ページにつき</td>
+                            <td>¥30,000〜</td>
+                            <td>
+                                読み手が知りたい情報がある。何を伝えたいのか明確に。
+                                <br>作り手が面白いと思う記事を。
+                                <br>この３つを明確にした会報誌で広告収入も可能です！
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>パンフレット/１ページにつき</td>
+                            <td>¥30,000〜</td>
+                            <td>
+                                制作経験を基にデザインされた様々な業種の会社案内をご提供いたします。自社の業種にこだわらず様々な会社さま独自のパンフレットをご提供いたします。
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="hp_red">
+                    <p class="hp_red__title">オススメパック</p>
+                    <div class="hp_red__wrapper">
+                        <p class="hp_red__text hp_red__left">
+                            <span class="hp_red__text_red">定期オーダーいただけるお客さまには</span>
+                            ポイントカードをプレゼント！ポイントが溜まれば印刷費用またはデザイン費用が1割引にてご活用いただけます！ぜひご利用ください！
+                        </p>
+                        <div class="hp_red__right">
+                            <p class="hp_red__text hp_red__text_red hp_red__text_large">上記プランから正式ご発注のお客さまのみ</p>
+                            <p class="hp_red__text">※お申し込み時に「オススメパック」利用とお伝えください</p>
+                        </div>
+                        <p class="hp_red__btm">リピーター様には別途お得なキャンペーンをメルマガにて配信しております！</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- その他のご質問事項 -->
+            <article class="p_price__content" id="5">
+                <div class="p_price__top hp_head">
+                    <div class="hp_head__left">
+                        <img src="assets/img/icon/icon6.svg" alt="アイコン" class="hp_head__img">
+                        <h3 class="hp_head__title">その他のご質問事項</h3>
+                    </div>
+                    <a href="" class="hp_head__right">質問ページへ移動</a>
+                </div>
+            </article>
+        </section>
+
+        <!-- お問合せ -->
+        <aside class="tocontact hp_wrapper">
+            <p class="tocontact__title">お気軽にお問い合わせください</p>
+            <div class="tocontact__content">
+                <p class="tocontact__text">
+                    デザインクリエイトトのスタイルは「顔の見えるサイト制作」です。
+                    <br>お客様のもとへ直接伺い、お客様それぞれにあったプランニングを行います。
+                    <br>サイトやツールのデザインイメージがはっきりと確定していない方でも大丈夫！
+                    <br>お客様に合わせたご提案を差し上げます。
+                    <br>デザインはお客様がご納得いくまで何度でも修正可能です。
+                    <br>お問い合わせフォーム・FAX・お電話にて、お気軽にお問い合わせください。
+                </p>
+                <a href="" class="tocontact__btn">お問い合わせ</a>
+            </div>
+        </aside>
+
+    </main>
+
+    <!-- フッター -->
+    <footer>
+        <!-- お問い合わせ -->
+        <div class="ft_contact">
+            <div class="ft_contact__wrapper hp_wrapper">
+                <p class="ft_contact__text">ご相談・ご質問等ございましたら、お気軽にお問い合わせください。</p>
+                <a href="" class="ft_contact__btn">お問い合わせ</a>
+            </div>
+        </div>
+        
+        <!-- メイン -->
+        <div class="ft_main">
+            <nav class="ft_main__wrapper hp_wrapper">
+                <div class="ft_main__content">
+                    <a href="" class="ft_main__link">
+                        <p class="ft_main__link_white">サービス案内</p>
+                        <p class="ft_main__link_blue">Service</p>
+                    </a>
+                    <a href="" class="ft_main__gray">デザイン制作</a>
+                    <a href="" class="ft_main__gray">名刺･チラシ･POP制作</a>
+                    <a href="" class="ft_main__gray">大型看板･ポスター制作</a>
+                    <a href="" class="ft_main__gray">会報誌･冊子制作</a>
+                    <a href="" class="ft_main__gray">SEOコンサルティング</a>
+                </div>
+
+                <div class="ft_main__content">
+                    <a href="" class="ft_main__link">
+                        <p class="ft_main__link_white">制作の流れ</p>
+                        <p class="ft_main__link_blue">Flow</p>
+                    </a>
+                    <a href="" class="ft_main__link">
+                        <p class="ft_main__link_white">選ばれる理由</p>
+                        <p class="ft_main__link_blue">Selected</p>
+                    </a>
+                    <a href="" class="ft_main__link">
+                        <p class="ft_main__link_white">実績</p>
+                        <p class="ft_main__link_blue">Works</p>
+                    </a>
+                </div>
+
+                <div class="ft_main__content">
+                    <a href="" class="ft_main__link">
+                        <p class="ft_main__link_white">料金案内</p>
+                        <p class="ft_main__link_blue">Price</p>
+                    </a>
+                    <a href="" class="ft_main__link">
+                        <p class="ft_main__link_white">会社案内</p>
+                        <p class="ft_main__link_blue">Company</p>
+                    </a>
+                </div>
+
+                <div class="ft_main__content">
+                    <a href="" class="ft_main__link">
+                        <p class="ft_main__link_white">新着情報</p>
+                        <p class="ft_main__link_blue">News</p>
+                    </a>
+                    <a href="" class="ft_main__link">
+                        <p class="ft_main__link_white">お問い合わせ</p>
+                        <p class="ft_main__link_blue">Contact</p>
+                    </a>
+                    <a href="" class="ft_main__gray ft_main__gray_small">プライバシーポリシー</a>
+                    <a href="" class="ft_main__gray ft_main__gray_small">サイトマップ</a>
+                </div>
+
+                <a href="#" class="ft_main__gotop">PAGE TOP</a>
+            </nav>
+        </div>
+
+        <!-- コピーライト -->
+        <div class="ft_cp">
+            <div class="hp_wrapper ft_cp__wrapper">
+                <p class="ft_cp__text">埼玉県川口市ホームページ制作｜デザインクリエイト</p>
+                <p class="ft_cp__text">Copyright ©️ Design Create All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+<script src="assets/js/script.js"></script>
+</body>
+</html>

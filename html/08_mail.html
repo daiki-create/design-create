@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=375, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keywords" content="" >
+
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+    <!-- Vue.js -->
+    <script src="//unpkg.com/vue"></script>
+
+</head>
+<body>
+
+    <!-- ヘッダー -->
+    <header>
+        <!-- ヘッダー部分 -->
+        <div class="header" id="header">
+            <div class="header__warpper hp_wrapper">
+    
+                <!-- ロゴ -->
+                <a class="header__logo" @mouseover="hide_meganav">
+                    <img loading='lazy' src='assets/img/logo.svg' alt='オリジナル制作ならデザインクリエイト｜Design Create'>
+                </a>
+    
+                <!-- ナビ -->
+                <nav>
+                    <ul class="header__nav">
+                        <li>
+                            <head_link ja="サービス案内" en="Service" url="#" @show_meganav='show_meganav'/>
+                        </li>
+                        <li>
+                            <head_link ja="制作の流れ" en="Flow" url="#" @show_meganav='show_meganav'/>
+                        </li>
+                        <li>
+                            <head_link ja="選ばれる理由" en="Reasons" url="#" @show_meganav='show_meganav'/>
+                        </li>
+                        <li>
+                            <head_link ja="実績" en="Works" url="#" @show_meganav='show_meganav'/>
+                        </li>
+                        <li>
+                            <head_link ja="料金案内" en="Price" url="#" @show_meganav='show_meganav'/>
+                        </li>
+                        <li>
+                            <head_link ja="よくある質問" en="Q&A" url="#" @show_meganav='show_meganav'/>
+                        </li>
+                        <li>
+                            <head_link ja="会社概要" en="About us" url="#" @show_meganav='show_meganav'/>
+                        </li>
+                        <li>
+                            <a href="" class="header__contact" @mouseover="hide_meganav">
+                                お問合せ
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+    
+                <!-- メガメニュー -->
+                <transition name="meganav">
+                    <nav class="header__mega meganav" v-if='is_mega_show' @mouseleave="hide_meganav">
+                        <div class="meganav__left">
+                            <a class="meganav__content">
+                                <figure class="meganav__img">
+                                    <img loading='lazy' src='assets/img/meganav/img (1).jpg' alt='ホームページ制作'>
+                                </figure>
+                                <p class="meganav__text">ホームページ制作</p>
+                            </a>
+                            <a class="meganav__content">
+                                <figure class="meganav__img">
+                                    <img loading='lazy' src='assets/img/meganav/img (2).jpg' alt='デザイン制作'>
+                                </figure>
+                                <p class="meganav__text">デザイン制作</p>
+                            </a>
+                            </a>
+                            <a class="meganav__content">
+                                <figure class="meganav__img">
+                                    <img loading='lazy' src='assets/img/meganav/img (3).jpg' alt='名刺・チラシ・POP制作'>
+                                </figure>
+                                <p class="meganav__text">名刺・チラシ・POP制作</p>
+                            </a>
+                            </a>
+                            <a class="meganav__content">
+                                <figure class="meganav__img">
+                                    <img loading='lazy' src='assets/img/meganav/img (4).jpg' alt='大型看板・ポスター制作'>
+                                </figure>
+                                <p class="meganav__text">大型看板・ポスター制作</p>
+                            </a>
+                            </a>
+                            <a class="meganav__content">
+                                <figure class="meganav__img">
+                                    <img loading='lazy' src='assets/img/meganav/img (5).jpg' alt='冊子・会報誌制作'>
+                                </figure>
+                                <p class="meganav__text">冊子・会報誌制作</p>
+                            </a>
+                            </a>
+                            <a class="meganav__content">
+                                <figure class="meganav__img">
+                                    <img loading='lazy' src='assets/img/meganav/img (6).jpg' alt='SEO対策コンサルティング'>
+                                </figure>
+                                <p class="meganav__text">SEO対策コンサルティング</p>
+                            </a>
+                        </div>
+                        <div class="meganav__right">
+                            <a href="" class="meganav__link">制作の流れ</a>
+                            <a href="" class="meganav__link">選ばれる理由</a>
+                        </div>
+                    </nav>
+                </transition>
+    
+                <!-- モバイルナビ -->
+                <button class="header__hum" @click="click_hum">
+                    <div class="header__hum_open" :class="{ active: is_mobile_show }"></div>
+                    <div class="header__hum_open" :class="{ active: is_mobile_show }"></div>
+                    <div class="header__hum_open" :class="{ active: is_mobile_show }"></div>
+                    <div class="header__hum_close2" :class="{ active: is_mobile_show }"></div>
+                    <div class="header__hum_close1" :class="{ active: is_mobile_show }"></div>
+                </button>
+                <transition name="mobilenav">
+                    <nav class="header__mobilenav mobilenav" v-if='is_mobile_show'>
+                        <ul>
+                            <li>
+                                <a href="" class="mobilenav__link">サービス案内</a>
+                            </li>
+                            <li>
+                                <a href="" class="mobilenav__link">制作の流れ</a>
+                            </li>
+                            <li>
+                                <a href="" class="mobilenav__link">選ばれる理由</a>
+                            </li>
+                            <li>
+                                <a href="" class="mobilenav__link">実績</a>
+                            </li>
+                            <li>
+                                <a href="" class="mobilenav__link">料金案内</a>
+                            </li>
+                            <li>
+                                <a href="" class="mobilenav__link">よくある質問</a>
+                            </li>
+                            <li>
+                                <a href="" class="mobilenav__link">会社概要</a>
+                            </li>
+                            <li>
+                                <a href="" class="mobilenav__link">お問い合わせ</a>
+                            </li>
+                        </ul>
+        
+                    </nav>
+                </transition>
+            </div>
+        </div>
+
+    </header>
+
+    <!-- メインコンテンツ -->
+    <div class="hp_page p_mail hp_wrapper">
+
+        <!-- 見出し -->
+        <header>
+            <!-- 見出し -->
+            <p class="hp_blue">Mail</p>
+            <h2 class="hp_title hp_mb60">メールでのお問合せ</h2>
+            <p class="p_mail__title">
+                <img loading='lazy' src='assets/img/logo2.svg' alt='Design Create'>
+                に少しでも気になった方は
+                <br>お気軽にお問い合わせ下さい！
+            </p>
+        </header>
+
+        <!-- STEP -->
+        <aside>
+            <ul class="p_mail__flows">
+                <li class="p_mail__flow p_mail__flow_now">
+                    <span class="p_mail__step">STEP1</span>
+                    <span class="p_mail__white">必須事項の入力</span>
+                </li>
+                <li class="p_mail__flow">
+                    <span class="p_mail__step">STEP2</span>
+                    <span class="p_mail__white">入力内容の確認</span>
+                </li>
+                <li class="p_mail__flow">
+                    <span class="p_mail__step">STEP3</span>
+                    <span class="p_mail__white">送信完了</span>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- 入力欄 -->
+        <p class="p_mail__red">※印は入力必須項目となっております｡</p>
+        <main class="p_mail__main">
+            <dl class="p_mail__content">
+                <dt class="p_mail__term">
+                    ご氏名
+                    <span class="p_mail__term_red">※</span>
+                </dt>
+                <dd class="p_mail__desc">
+                    <input type="text" class="p_mail__input">
+                </dd>
+            </dl>
+            <dl class="p_mail__content">
+                <dt class="p_mail__term">
+                    会社名
+                </dt>
+                <dd class="p_mail__desc">
+                    <input type="text" class="p_mail__input">
+                </dd>
+            </dl>
+            <dl class="p_mail__content">
+                <dt class="p_mail__term">
+                    電話番号
+                    <span class="p_mail__term_red">※</span>
+                </dt>
+                <dd class="p_mail__desc">
+                    <input type="text" class="p_mail__input">
+                </dd>
+            </dl>
+            <dl class="p_mail__content">
+                <dt class="p_mail__term">
+                    郵便番号
+                    <span class="p_mail__term_red">※</span>
+                </dt>
+                <dd class="p_mail__desc">
+                    <input type="text" class="p_mail__input">
+                </dd>
+            </dl>
+            <dl class="p_mail__content">
+                <dt class="p_mail__term">
+                </dt>
+                <dd class="p_mail__desc">
+                    ※郵便番号をご入力頂けますと自動的に住所が入力されます｡
+                </dd>
+            </dl>
+            <dl class="p_mail__content">
+                <dt class="p_mail__term">
+                    都道府県
+                </dt>
+                <dd class="p_mail__desc">
+                    <select name="" id="" class="p_mail__select">
+                        <option value="選択肢1">選択肢1</option>
+                        <option value="選択肢2">選択肢2</option>
+                        <option value="選択肢3">選択肢3</option>
+                    </select>
+                </dd>
+            </dl>
+            <dl class="p_mail__content">
+                <dt class="p_mail__term">
+                    以降の住所
+                </dt>
+                <dd class="p_mail__desc">
+                    <input type="text" class="p_mail__input">
+                </dd>
+            </dl>
+            <dl class="p_mail__content">
+                <dt class="p_mail__term">
+                    メールアドレス
+                    <span class="p_mail__term_red">※</span>
+                </dt>
+                <dd class="p_mail__desc">
+                    <input type="text" class="p_mail__input">
+                </dd>
+            </dl>
+            <dl class="p_mail__content p_mail__content_col">
+                <dt class="p_mail__term">
+                    お打ち合わせ方法の希望
+                    <span class="p_mail__term_red"></span>
+                </dt>
+                <dd class="p_mail__desc">
+                    <label for="">
+                        <input type="radio" class="p_mail__radio">
+                        <span>御社訪問を希望する</span>
+                    </label>
+                    <label for="">
+                        <input type="radio" class="p_mail__radio">
+                        <span>御社訪問を希望する</span>
+                    </label>
+                    <p class="p_mail__ann">
+                        ZOOM打ち合わせ希望の場合は後日招待URLをお送りいたします。
+                    </p>
+                </dd>
+            </dl>
+            <dl class="p_mail__content p_mail__content_col">
+                <dt class="p_mail__term">
+                    どこで当サイトを知りましたか？
+                    <span class="p_mail__term_red"></span>
+                </dt>
+                <dd class="p_mail__desc">
+                    <label for="">
+                        <input type="radio" class="p_mail__radio">
+                        <span>検索エンジン</span>
+                    </label>
+                    <label for="">
+                        <input type="radio" class="p_mail__radio">
+                        <span>紹介</span>
+                    </label>
+                    <label for="">
+                        <input type="radio" class="p_mail__radio">
+                        <span>チラシ</span>
+                    </label>
+                </dd>
+            </dl>
+            <dl class="p_mail__content p_mail__content_col">
+                <dt class="p_mail__term">
+                    お問合せ項目
+                </dt>
+                <dd class="p_mail__desc">
+                    <label for="">
+                        <input type="radio" class="p_mail__radio">
+                        <span>見積もり・相談</span>
+                    </label>
+                    <label for="">
+                        <input type="radio" class="p_mail__radio">
+                        <span>メルマガ登録</span>
+                    </label>
+                    <p class="p_mail__ann">
+                        ※営業メールに関しては迷惑メールに入りますため、予めご了承ください。
+                    </p>
+                </dd>
+            </dl>
+            <dl class="p_mail__content p_mail__content_aifls">
+                <dt class="p_mail__term">
+                    コメント
+                    <span class="p_mail__term_red"></span>
+                </dt>
+                <dd class="p_mail__desc">
+                    <textarea class="p_mail__input" name="" id="" cols="30" rows="10"></textarea>
+                </dd>
+            </dl>
+
+            <input type="submit" value="送　信" class="p_mail__submit">
+
+        </main>
+
+    </div>
+
+    <!-- フッター -->
+    <footer>
+        <!-- お問い合わせ -->
+        <div class="ft_contact">
+            <div class="ft_contact__wrapper hp_wrapper">
+                <p class="ft_contact__text">ご相談・ご質問等ございましたら､お気軽にお問い合わせください｡</p>
+                <a href="" class="ft_contact__btn">お問い合わせ</a>
+            </div>
+        </div>
+        
+        <!-- メイン -->
+        <div class="ft_main">
+            <nav class="ft_main__wrapper hp_wrapper">
+                <div class="ft_main__content">
+                    <a href="" class="ft_main__link">
+                        <p class="ft_main__link_white">サービス案内</p>
+                        <p class="ft_main__link_blue">Service</p>
+                    </a>
+                    <a href="" class="ft_main__gray">デザイン制作</a>
+                    <a href="" class="ft_main__gray">名刺･チラシ･POP制作</a>
+                    <a href="" class="ft_main__gray">大型看板･ポスター制作</a>
+                    <a href="" class="ft_main__gray">会報誌･冊子制作</a>
+                    <a href="" class="ft_main__gray">SEOコンサルティング</a>
+                </div>
+
+                <div class="ft_main__content">
+                    <a href="" class="ft_main__link">
+                        <p class="ft_main__link_white">制作の流れ</p>
+                        <p class="ft_main__link_blue">Flow</p>
+                    </a>
+                    <a href="" class="ft_main__link">
+                        <p class="ft_main__link_white">選ばれる理由</p>
+                        <p class="ft_main__link_blue">Selected</p>
+                    </a>
+                    <a href="" class="ft_main__link">
+                        <p class="ft_main__link_white">実績</p>
+                        <p class="ft_main__link_blue">Works</p>
+                    </a>
+                </div>
+
+                <div class="ft_main__content">
+                    <a href="" class="ft_main__link">
+                        <p class="ft_main__link_white">料金案内</p>
+                        <p class="ft_main__link_blue">Price</p>
+                    </a>
+                    <a href="" class="ft_main__link">
+                        <p class="ft_main__link_white">会社案内</p>
+                        <p class="ft_main__link_blue">Company</p>
+                    </a>
+                </div>
+
+                <div class="ft_main__content">
+                    <a href="" class="ft_main__link">
+                        <p class="ft_main__link_white">新着情報</p>
+                        <p class="ft_main__link_blue">News</p>
+                    </a>
+                    <a href="" class="ft_main__link">
+                        <p class="ft_main__link_white">お問い合わせ</p>
+                        <p class="ft_main__link_blue">Contact</p>
+                    </a>
+                    <a href="" class="ft_main__gray ft_main__gray_small">プライバシーポリシー</a>
+                    <a href="" class="ft_main__gray ft_main__gray_small">サイトマップ</a>
+                </div>
+
+                <a href="#" class="ft_main__gotop">PAGE TOP</a>
+            </nav>
+        </div>
+
+        <!-- コピーライト -->
+        <div class="ft_cp">
+            <div class="hp_wrapper ft_cp__wrapper">
+                <p class="ft_cp__text">埼玉県川口市ホームページ制作｜デザインクリエイト</p>
+                <p class="ft_cp__text">Copyright ©️ Design Create All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+<script src="assets/js/script.js"></script>
+</body>
+</html>
